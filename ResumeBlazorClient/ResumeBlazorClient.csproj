@@ -23,6 +23,7 @@
   <ItemGroup>
     <Reference Include="ResumeCore">
       <HintPath>..\..\ResumeServices\ResumeCore\bin\Release\net5.0\ResumeCore.dll</HintPath>
+      <Private>true</Private>
     </Reference>
   </ItemGroup>
 
