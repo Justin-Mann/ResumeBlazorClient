@@ -7,10 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="nginx.conf" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Content Include="nginx.conf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -34,12 +30,6 @@
     <Content Update="wwwroot\index.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="Pages\AboutApp - Copy.razor.css">
-      <DependentUpon>AboutApp.razor.css</DependentUpon>
-    </None>
   </ItemGroup>
 
 </Project>
