@@ -1,0 +1,8 @@
+﻿.toggleTrigger {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.infoBlock {
+    margin-left: 6px;
+}

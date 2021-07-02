@@ -9,7 +9,7 @@
 }
 
 .sidebar {
-    background-image: linear-gradient(180deg, rgb(5, 39, 103) 0%, #3a0647 70%);
+    background-image: linear-gradient( 180deg, rgb(14 14 40) 35%, #495057 100%);
 }
 
 .top-row {
@@ -19,6 +19,7 @@
     height: 3.5rem;
     display: flex;
     align-items: center;
+    z-index: 200;
 }
 
     .top-row ::deep a, .top-row .btn-link {
@@ -30,6 +31,11 @@
         overflow: hidden;
         text-overflow: ellipsis;
     }
+
+
+.page-footer {
+    color: rgb(0 123 255 / 27%);
+}
 
 @media (max-width: 640.98px) {
     .top-row:not(.auth) {
@@ -60,7 +66,7 @@
     .top-row {
         position: sticky;
         top: 0;
-        z-index: 1;
+        z-index: 200;
     }
 
     .main > div {

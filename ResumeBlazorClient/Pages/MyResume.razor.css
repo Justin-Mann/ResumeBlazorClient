@@ -1,0 +1,392 @@
+﻿html, body {
+    height: 100%;
+    margin: 0;
+}
+
+.colnum1 {
+    min-width: 300px;
+}
+
+.load-wrapper, .activity {
+    display: none;
+}
+
+.isLoading {
+    opacity: 35%;
+}
+
+    .isLoading .load-wraper {
+        position: relative;
+        height: 100%;
+        width: 100%;
+        background-color: rgb(211,211,211);
+        z-index: 44;
+        overflow: hidden;
+        border-radius: 5px;
+        min-height: inherit;
+        height: inherit;
+        display: block;
+    }
+
+    .isLoading .activity {
+        position: absolute;
+        left: -45%;
+        height: 100%;
+        width: 45%;
+        background-image: linear-gradient(to left, rgba(251,251,251, .05), rgba(251,251,251, .3), rgba(251,251,251, .6), rgba(251,251,251, .3), rgba(251,251,251, .05));
+        background-image: -moz-linear-gradient(to left, rgba(251,251,251, .05), rgba(251,251,251, .3), rgba(251,251,251, .6), rgba(251,251,251, .3), rgba(251,251,251, .05));
+        background-image: -webkit-linear-gradient(to left, rgba(251,251,251, .05), rgba(251,251,251, .3), rgba(251,251,251, .6), rgba(251,251,251, .3), rgba(251,251,251, .05));
+        animation: loading 1s infinite;
+        z-index: 45;
+        min-height: inherit;
+        height: inherit;
+        display: block;
+    }
+
+@keyframes loading {
+    0% {
+        left: -45%;
+    }
+
+    100% {
+        left: 100%;
+    }
+}
+
+.resume {
+    position: relative;
+}
+
+.profileImage {
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 10px auto;
+}
+
+    .profileImage .load-wraper {
+        background-color: rgba(131, 147, 167, 0.7);
+    }
+
+.fullName > h1 > span {
+    display: inline-block;
+    initial-letter: 1.2;
+}
+
+    .fullName > h1 > span::first-letter {
+        display: inline-block;
+        font-size: 1.5em;
+        color: rgb(41 96 196 / 0.9);
+        position: relative;
+        bottom: -4px;
+    }
+
+.profileContactInfo {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 12px;
+    min-height: 120px;
+    margin-bottom: 15px;
+}
+
+    .profileContactInfo > div {
+        margin-bottom: 3px;
+    }
+
+    .profileContactInfo .addressBlock {
+        width: 100%;
+        min-height: 40px;
+    }
+
+    .profileContactInfo .profilePhone,
+    .profileContactInfo .profileEmail,
+    .profileContactInfo .profileWebsite,
+    .profileContactInfo .profileGitHub {
+        width: 100%;
+        min-height: 24px;
+    }
+
+.skillGroup {
+    width: 100%;
+    text-align: right;
+    margin-bottom: 15px;
+}
+
+.isLoading .skillGroup .skillHeader {
+    min-height: 26px;
+    width: 100%;
+    padding-left: 8px;
+    padding-top: 4px;
+    margin-bottom: 4px;
+}
+
+.skillGroup .skillHeader {
+    min-height: auto;
+    padding-top: 12px;
+    color: #000473;
+    font-size: 14px;
+    margin-bottom: 4px;
+    text-align: left;
+    font-weight: 700;
+    font-family: arial;
+}
+
+    .skillGroup .skillHeader .load-wraper {
+        background-color: rgb(41 96 196 / 0.58);
+    }
+
+.isLoading .skillGroup .skillLabel {
+    min-height: 20px;
+    width: 100%;
+    padding-left: 8px;
+    padding-top: 8px;
+    margin-bottom: 2px;
+}
+
+.skillGroup .skillLabel {
+    min-height: auto;
+    font-size: 12px;
+    margin-top: 6px;
+}
+
+.skillGroup .skill {
+    min-height: 8px;
+}
+
+    .skillGroup .skill .load-wraper {
+        background-color: #8eb5bb;
+    }
+
+.resumeTitle {
+    width: 90%;
+    text-align: center;
+    min-height: 80px;
+    margin: 70px auto 15px auto;
+}
+
+.resumeSubtitle {
+    width: 90%;
+    text-align: center;
+    min-height: 35px;
+    margin: 0px auto 30px auto;
+}
+
+.blockTitle {
+    margin-left: auto;
+    width: 50%;
+    min-height: 14px;
+    margin-bottom: 3px;
+}
+
+    .blockTitle .load-wraper {
+        background-color: rgb(41 96 196 / 0.58);
+    }
+
+.blockContent {
+    margin-left: auto;
+    min-width: 90%;
+    min-height: 145px;
+    margin-top: 3px;
+    margin-bottom: 20px;
+}
+
+.addressBlock {
+    text-align: center;
+}
+
+    .addressBlock > p {
+        font-style: italic;
+        font-size: 12px;
+        font-family: Arial;
+    }
+
+.profileContactInfo .profilePhone,
+.profileContactInfo .profileEmail,
+.profileContactInfo .profileWebsite,
+.profileContactInfo .profileLinkedIn,
+.profileContactInfo .profileGitHub {
+    text-align: center;
+    min-height: auto;
+}
+
+    .profileContactInfo .profilePhone > p,
+    .profileContactInfo .profileEmail > p,
+    .profileContactInfo .profileWebsite > p,
+    .profileContactInfo .profileLinkedIn > p,
+    .profileContactInfo .profileGitHub > p {
+        font-weight: 700;
+        font-size: 12px;
+        font-family: Arial;
+        margin-bottom: 0px;
+    }
+
+.profileBlock {
+    margin-bottom: 30px;
+    width: 90%;
+    margin-left: auto;
+    margin-right: 0;
+}
+
+    .profileBlock .blockTitle {
+        width: auto;
+        font-size: 10px;
+        text-align: right;
+    }
+
+        .profileBlock .blockTitle h1 {
+            font-size: 14px;
+            font-weight: 700;
+            color: #000473;
+        }
+
+.isLoading .profileBlock .blockTitle {
+    width: 20%;
+}
+
+.profileBlock .blockContent {
+    min-height: 220px;
+}
+
+.educationHistoryBlock {
+    margin-bottom: 30px;
+    width: 90%;
+    margin-left: auto;
+    margin-right: 0;
+}
+
+    .educationHistoryBlock .blockTitle {
+        width: auto;
+        font-size: 10px;
+        text-align: right;
+    }
+
+        .educationHistoryBlock .blockTitle h1 {
+            font-size: 14px;
+            font-weight: 700;
+            color: #000473;
+        }
+
+.isLoading .educationHistoryBlock .blockTitle {
+    width: 31%;
+}
+
+.educationHistoryBlock .blockContent {
+}
+
+.isLoading .educationHistoryBlock .educationHistoryItem {
+    min-height: 180px;
+}
+
+.educationHistoryBlock .educationHistoryItem {
+    margin-bottom: 8px;
+    padding: 6px;
+    background-color: #54bfb50d;
+}
+
+.workHistoryBlock .workHistoryItem {
+    margin-bottom: 8px;
+    padding: 6px;
+    background-color: #f890ff0f;
+}
+
+    .educationHistoryBlock .educationHistoryItem h1.institutionName,
+    .workHistoryBlock .workHistoryItem h1.institutionName {
+        font-size: 16px;
+        text-align: left;
+        margin: 10px 0 0 0;
+        font-weight: 700;
+        color: #000473;
+    }
+
+    .educationHistoryBlock .educationHistoryItem hr,
+    .workHistoryBlock .workHistoryItem hr {
+        margin: 0;
+    }
+
+    .educationHistoryBlock .educationHistoryItem .startDate,
+    .educationHistoryBlock .educationHistoryItem .endDate,
+    .educationHistoryBlock .educationHistoryItem .institutionLocation,
+    .workHistoryBlock .workHistoryItem .startDate,
+    .workHistoryBlock .workHistoryItem .endDate,
+    .workHistoryBlock .workHistoryItem .institutionLocation,
+    .workHistoryBlock .workHistoryItem .jobTitle {
+        font-style: italic;
+        font-size: 11px;
+        font-weight: 700;
+        text-align: center;
+        margin-bottom: 1px;
+    }
+
+.innerBlockTitle > h1 {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 700;
+    color: #000473;
+    text-align: left;
+}
+
+.innerBlockContent > div {
+    font-size: 12px;
+    color: #000;
+    text-align: left;
+    margin-right: 8px;
+    margin-bottom: 6px;
+    border-radius: 4px;
+}
+
+.workHistoryBlock {
+    margin-bottom: 30px;
+    width: 90%;
+    margin-left: auto;
+    margin-right: 0;
+}
+
+    .workHistoryBlock .blockTitle {
+        width: auto;
+        font-size: 10px;
+        text-align: right;
+    }
+
+        .workHistoryBlock .blockTitle h1 {
+            font-size: 14px;
+            font-weight: 700;
+            color: #000473;
+        }
+
+.isLoading .workHistoryBlock .blockTitle {
+    width: 28%;
+}
+
+.workHistoryBlock .blockContent {
+}
+
+.workHistoryBlock .workHistoryItem {
+    min-height: 180px;
+    margin-bottom: 8px;
+}
+
+.skillGroup > hr {
+    margin: 0px;
+}
+
+.profileBlock > .blockContent {
+    background-color: #001fff0d;
+}
+
+    .profileBlock > .blockContent > div {
+        margin-left: 8px;
+    }
+
+.profileBlock > hr {
+    margin: 0px;
+}
+
+.educationHistoryBlock > hr {
+    margin: 0px;
+}
+
+.workHistoryBlock > hr {
+    margin: 0px;
+}

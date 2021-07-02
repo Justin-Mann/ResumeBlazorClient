@@ -1,0 +1,131 @@
+﻿@page "/aboutapp"
+
+<h1>About This Application Stack</h1>
+<hr />
+<div class="generalInfo infoBlock">
+    <p>
+        The purpose of this application is to act as a portfolio project... actually my only portfolio project as I tend to do the same thing over and over with different technologies.
+        I do this to keep myself sharp with newly introduced technology and I maintain the 'out with the old' philosophy to keep help keep my hosting costs down as I host my protfolio
+        project in real Cloud production environments (Azure).  The idea is that while there is only on real project in my portfolio, every layer of that project is real, nothing mocked...
+        nothing emulated... real hosting, real ci/cd, no packaged solutions (I start with the visual studios templates of course)... but ultimately I am anserable for all the design
+        implementation, build and publication and the hosting environments and Azure resources that are utilized.  At the time of this writing I am have decided to reimplement the
+        goal being a Blazo client application on the frontend, data in Cosmos Db, Microservices for the middleware, and dapr using Service Bus for pubsub supporting microservice communications.
+    </p>
+    <img src="img/resumeapp.simpleDomain.png" class="img-fluid mx-auto d-block overviewImage" />
+    <div class="alert alert-info" role="alert" style="margin: 20px 5px;">
+        <div class="row">
+            <div class="col-1">
+                <div style="background: white; border-radius: 50%; padding: 15px; margin: auto;" class="oi oi-info"></div>
+            </div>
+            <div class="col">
+                <p style="text-align: center;">
+                    <b>
+                        This application stack is still very new and not what I call in a production ready state.. I have future plans to build out some additional scope of service, but I am not even to that
+                        point yet.  I still need to implement additional microservices and take advantage of them and there is som work I would like to do in the Blazor app (what you are looking at now) to
+                        break some "monolithic" page components into more granular components.
+                    </b>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<h3 class="toggleTrigger"><a @onclick="ToggleClientInfo">Client App</a></h3>
+<hr />
+@if ( ShowClientInfo ) {
+    <div class="clientInfo infoBlock">
+        <p>
+            This client app is a <a href="https://docs.microsoft.com/en-us/aspnet/core/blazor/hosting-models?view=aspnetcore-5.0#blazor-webassembly" target="_blank">Blazor Client Side WebAssembly</a> implementation.
+            I have been wanting to work with Blazor for a while and I figured best place to begin is the beginning so I just kinda ignored the <a href="https://docs.microsoft.com/en-us/aspnet/core/blazor/hosting-models?view=aspnetcore-5.0#blazor-server" target="_blank">Blazor</a>
+            Server option and built a client Side App.  As I work on the project I realize with a microservice backend this will work quite well and the only real reason I would want
+            the additional Blazor layer is if I wanted a 'reactive' application that relected changes to the serverside data (not planning on that) so all things considered I'm going to give thru this application again in the near future
+            and make better use of components so the page components are not so monolithic.  I also intend to build out an administrative portal to allow for new resumes (that I will never show
+            outside of the admin protal) to be add, this will allow me to show identity login and display some n-teir type functionality.  That is really all I intend to do with the client
+            application in the future, I have no intention to built out a Blazor server component or make use of SignalR to push live data from the server to the client application..
+            my data just is not going to change soo... ya. Happy to keep things simple. :)
+        </p>
+    </div>
+    <hr />
+}
+
+<h3 class="toggleTrigger"><a @onclick="ToggleBackendInfo">Backend Services</a></h3>
+<hr />
+@if ( ShowBackendInfo ) {
+    <div class="backendInfo infoBlock">
+        <p>
+            The backend services are intended to be microservices, but at the time of this writing it is still pretty mono api.. That was really all I needed to get the stack up, but I intend to
+            abstract a few microservices and build out the existing api.  I will probably not use an Azure API Gateway as they tend to be expensive for this sort of simple thing, but I have every
+            intention of implementing microsoft identity service and setup AAD (maybe B2C if I find a use case) so ultimately I intend the existing api to handle all authentication and
+            autorization so it will play the role of a gateway and application api.. I'll build some microservices behind it. The current graphic is not full representative of this, but that
+            is definately a working version of the same idea with Azure API Gateway in the mix.
+        </p>
+        <h4>ResumeApi [GitHub]</h4>
+        <p>
+            This is basically an application specific API that stores it's data in Cosmos Db and is hosted in Azure Kubernetes Services (AKS). This is an important bit as it acts as the API Gateway
+            as well, having the only exposed service port outside of the AKS cluster via ingress and a load-balanced service.  The client app is hosted in AKS as well.. and there would have been
+            some interesting options here if I had choosen to implement a Blazor server side app, but it would not have yielded any real benifit to what I was doing.  As it stands the client app
+            comes from a service running in AKS, but once your device is running the only access to the data api the application has is via the ingress route and authentication/authorization is
+            handled by the Resume API itself.  The Resume API has unfettered access to the other APIs that I implemented as a couple examples of microservices.  All three service containers communicate
+            between each other using pubsub to dispatch and react to events enabling them to maintain the data in their own data domain models and CHOOSE how or if they syncronize certain data elements.
+        </p>
+        <h4>PeopleApi [GitHub]</h4>
+        <p>
+            This is a simple microservice to host records of people and their metadata.  It is a simple CRUD RESTful API with a direct repository behind it.. so currently controller(s), a simple service
+            layer to deal with some of the service specific events (there probably6 won't be any in this service, but it is a good pattern to maintain) and an implementation of a generic repository
+            to help with Azure Comsmos Db containers and that is about it. The reason there is not much of a service layer is there is not much service logic to consider.. this layer of microservice
+            will never have to update it's records according to some outside source, if it had event listeners for this the service layer is the best place to define this type of logic, but this type
+            of thing will be clearly visible in future implementations of the Resume API.  Ultimately this is a very simple microservice that is not going to be doing much more than feeding some drop
+            down selection lists, once the Resume API writes a record it writes it in it's complete form so it does not have to do any secondary interactions with other APIs when it is serving data
+            to a Client App out on the internet.  There is no restriction saying that the record has to be written that way (in a complete form), of course you could use reference ids and do a secondary
+            lookup to complete the record before delivering to a client; this is 100% a design/optimization choice specific to what I was doing here.
+        </p>
+        <h4>InstitutionApi [GitHub]</h4>
+        <p>
+            Similar to the PeopleApi above... I'm not going to redescribe the whole thing, but it is a CRUD RESTful implimentation. This microservice obviously takes care of 'institution' type records,
+            like a school, employer, business, whatever... so it could be widely reusable as well.  If I had choosen to write partial record in my resume service and just use reference ids I would have
+            been able to cut down the record size pretty significantly here because I have multiple 'education' and 'employer' institution children in each resume record that could just be ids and
+            secondary lookups.. again I am not doing this as I am concerned with speed over data footprint.
+        </p>
+        <h4>NotificationServiceApi [GitHub]</h4>
+        <p>
+            I really don't have much of a need for a notification microservice, but it is a great example of a utility microservice... and as I am writing this (I have not built this service out yet),
+            I am thinking I might go with an azure function instead of writing a service for this... Serves the same purpose and is a fancy portfolio type thing to do.  Because of the network resource
+            allocation that a fully scalable... thing... like an azure function is subject to, they do not allow smtp service to exist in an azure function as this type of system would be a little
+            'too anonymous'.  because of this I will use an azure function that calls a third party to send the email, there are lots of blogs out there on achieving this with SendGrid so that will
+            probably be what is ultimately doing the work after I build out this bit.
+        </p>
+    </div>
+    <hr />
+}
+
+<h3 class="toggleTrigger"><a @onclick="ToggleHostingInfo">Cloud Hosting</a></h3>
+<hr />
+@if ( ShowHostingInfo ) {
+    <div class="hostingInfo infoBlock">
+        <p>
+            The Blazor application itself is hosted by Azure App Service as a containerized app (docker image stored in ACR) and runs on the client itself.. Once it is loaded it is running on your machine entirely and only uses
+            the internet to communicate with webservices it may need to interact with such as the Resume API where it gets all it's data from.  The Resume API and the other
+            microservices all run in seperate AKS containers and maintain their own datastores in Cosmos Db. I fully intend the microservice environment to be fully secured (that is they will
+            all use identity, have app registrations in ADD and have usage scopes onfigured to support delegated token access) instead of a secured environment where identity is only considered
+            (and subsequently terminated) at the gateway layer.
+        </p>
+        <p>
+            Aside from hosting in AKS and using cloud identity solutions this application stack (will) also takes advantage of other Azure cloud services such as Service Bus, Cosmos Db, App Insights,
+            Azure Functions .. and whatever else I need or feel like looping in to the mix I suppose. I will attempt to deliniate all of these items here in the future as it is easier to check my
+            resource group and actually see everything that ended up getting setup for this stack.
+        </p>
+    </div>
+    <hr />
+}
+
+<h3 class="toggleTrigger"><a @onclick="ToggleContainerInfo">Containerization</a></h3>
+<hr />
+@if ( ShowContainerInfo ) {
+    <div class="containerInfo infoBlock">
+        <p>
+            Docker Docker Docker... nuff said I imagine.. well, Docker Linux containers and I am putting them in a container registry in Azure (ACR) as part of ci/cd when my pipeline builds.
+            Docker Desktop is pretty much a life saver for local development (just fyi).
+        </p>
+    </div>
+    <hr />
+}

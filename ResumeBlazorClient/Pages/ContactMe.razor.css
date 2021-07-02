@@ -1,0 +1,43 @@
+﻿.toggleTrigger {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.infoBlock {
+    margin-left: 6px;
+}
+
+.emailFormPlaceholder {
+    width: 50%;
+    margin: auto;
+    height: 160px;
+    border-radius: 10%;
+}
+
+    .emailFormPlaceholder .load-wraper {
+        position: relative;
+        height: 100%;
+        width: 100%;
+        background-color: rgb(211,211,211);
+        z-index: 44;
+        overflow: hidden;
+        border-radius: 5px;
+        min-height: inherit;
+        height: inherit;
+        display: block;
+    }
+
+    .emailFormPlaceholder .activity {
+        position: absolute;
+        left: -45%;
+        height: 100%;
+        width: 45%;
+        background-image: linear-gradient(to left, rgba(251,251,251, .05), rgba(251,251,251, .3), rgba(251,251,251, .6), rgba(251,251,251, .3), rgba(251,251,251, .05));
+        background-image: -moz-linear-gradient(to left, rgba(251,251,251, .05), rgba(251,251,251, .3), rgba(251,251,251, .6), rgba(251,251,251, .3), rgba(251,251,251, .05));
+        background-image: -webkit-linear-gradient(to left, rgba(251,251,251, .05), rgba(251,251,251, .3), rgba(251,251,251, .6), rgba(251,251,251, .3), rgba(251,251,251, .05));
+        animation: loading 1s infinite;
+        z-index: 45;
+        min-height: inherit;
+        height: inherit;
+        display: block;
+    }
